@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM public.ecr.aws/library/node:22-alpine AS builder
+FROM public.ecr.aws/docker/library/node:22.15.0-alpine AS builder
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve with Nginx
-FROM public.ecr.aws/nginx/nginx:alpine
+FROM public.ecr.aws/nginx/nginx:stable-alpine
 
 # Remove the default nginx index page
 RUN rm -rf /usr/share/nginx/html/*
